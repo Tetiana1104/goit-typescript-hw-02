@@ -4,11 +4,9 @@ export interface Image {
     small: string;
     regular: string;
   };
-  // alt_description: string | null;
-  // description?: string | null;
-  alt_description?: string; 
+  alt_description?: string;
   description?: string;
   user?: {
     name: string;
-  };
+  } | null;
 }
