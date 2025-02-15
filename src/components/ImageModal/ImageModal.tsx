@@ -1,24 +1,26 @@
 import { useEffect, ReactNode } from "react";
-import { Image } from "../../types/Image.types";
 import ReactModal from "react-modal";
-
 import styles from "./ImageModal.module.css";
 
-interface ModalProps {
+type Image = {
+  urls: {
+    regular: string;
+  };
+  alt_description?: string;
+  description?: string;
+  user: {
+    name: string;
+  };
+};
+
+type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  image?: Image | null;
   children?: ReactNode;
-  onNavigate?: (direction: "next" | "prev") => void;
-}
+  image?: Image;
+};
 
-const Modal: React.FC<ModalProps> = ({
-  isOpen,
-  onClose,
-  children,
-  image,
-  onNavigate,
-}) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, image }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("no-scroll");
@@ -33,16 +35,11 @@ const Modal: React.FC<ModalProps> = ({
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         onClose();
-      } else if (e.key === "ArrowLeft" && onNavigate) {
-        onNavigate("prev");
-      } else if (e.key === "ArrowRight" && onNavigate) {
-        onNavigate("next");
       }
     };
-
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
-  }, [onClose, onNavigate]);
+  }, [onClose]);
 
   return (
     <ReactModal
@@ -62,9 +59,7 @@ const Modal: React.FC<ModalProps> = ({
           <p className={styles.description}>
             {image.description || "No description available"}
           </p>
-          <p className={styles.author}>
-            Author: {image.user ? image.user.name : "Unknown"}
-          </p>
+          <p className={styles.author}>Author: {image.user.name}</p>
         </div>
       )}
       <button onClick={onClose} className={styles.closeBtn}>

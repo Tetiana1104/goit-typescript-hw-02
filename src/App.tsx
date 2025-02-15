@@ -21,7 +21,7 @@ const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!query || page < 1) return;
+    if (!query) return;
 
     const fetchData = async () => {
       try {
