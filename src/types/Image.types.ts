@@ -6,7 +6,7 @@ export interface Image {
   };
   // alt_description: string | null;
   // description?: string | null;
-  alt_description?: string; // ✅ Тепер тип `string | undefined`, що не викличе конфлікту
+  alt_description?: string; 
   description?: string;
   user?: {
     name: string;
