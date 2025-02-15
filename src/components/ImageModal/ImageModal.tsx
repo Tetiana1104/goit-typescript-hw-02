@@ -13,13 +13,6 @@ type Image = {
   };
 };
 
-// type ModalProps = {
-//   isOpen: boolean;
-//   onClose: () => void;
-//   children?: ReactNode;
-//   image?: Image;
-// };
-
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
