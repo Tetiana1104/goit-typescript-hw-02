@@ -6,7 +6,5 @@ export interface Image {
   };
   alt_description?: string;
   description?: string;
-  user?: {
-    name: string;
-  } | null;
+  user?: { name: string } | null;
 }

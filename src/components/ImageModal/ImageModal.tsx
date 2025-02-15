@@ -8,7 +8,8 @@ type Image = {
   };
   alt_description?: string;
   description?: string;
-  user: {
+  // user: {
+  user?: {
     name: string;
   };
 };
@@ -59,7 +60,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, image }) => {
           <p className={styles.description}>
             {image.description || "No description available"}
           </p>
-          <p className={styles.author}>Author: {image.user.name}</p>
+          {/* <p className={styles.author}>Author: {image.user.name}</p> */}
+          <p className={styles.author}>
+            Author: {image.user?.name || "Unknown"}
+          </p>
         </div>
       )}
       <button onClick={onClose} className={styles.closeBtn}>
