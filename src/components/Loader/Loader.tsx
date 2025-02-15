@@ -1,9 +1,9 @@
-import { TailSpin } from "react-loader-spinner";
+import { ClipLoader } from "react-spinners";
 import s from "./Loader.module.css";
 
-const Loader: React.FC = () => (
+const Loader = () => (
   <div className={s.loader}>
-    <TailSpin height="50" width="50" color="#1e90ff" ariaLabel="loading" />
+    <ClipLoader size={50} color="#1e90ff" aria-label="loading" />
   </div>
 );
 
