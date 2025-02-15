@@ -11,7 +11,7 @@ type Image = {
   // user: {
   user?: {
     name: string;
-  };
+  } | null;
 };
 
 type ModalProps = {
@@ -19,9 +19,17 @@ type ModalProps = {
   onClose: () => void;
   children?: ReactNode;
   image?: Image | null;
+  onNavigate?: (direction: "next" | "prev") => void;
 };
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, image }) => {
+// const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, image }) => {
+const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  children,
+  image,
+  onNavigate,
+}) => {
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("no-scroll");
@@ -62,13 +70,25 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, image }) => {
           </p>
           {/* <p className={styles.author}>Author: {image.user.name}</p> */}
           <p className={styles.author}>
-            Author: {image.user?.name || "Unknown"}
+            Author: {image.user?.name || "Anonymous"}
           </p>
         </div>
       )}
       <button onClick={onClose} className={styles.closeBtn}>
         ✕
       </button>
+
+      {onNavigate && (
+        <div className={styles.navButtons}>
+          <button onClick={() => onNavigate("prev")} className={styles.prevBtn}>
+            ⬅️ Назад
+          </button>
+          <button onClick={() => onNavigate("next")} className={styles.nextBtn}>
+            Вперед ➡️
+          </button>
+        </div>
+      )}
+
       {children}
     </ReactModal>
   );

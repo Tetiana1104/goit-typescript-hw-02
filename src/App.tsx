@@ -84,8 +84,7 @@ const App: React.FC = () => {
       {page < totalPages && !isLoading && <LoadMoreBtn onClick={loadMore} />}
       <ImageModal
         isOpen={isModalOpen}
-        // image={selectedImage}
-        image={selectedImage || undefined}
+        image={selectedImage}
         onClose={closeModal}
         onNavigate={handleNavigate}
       />
